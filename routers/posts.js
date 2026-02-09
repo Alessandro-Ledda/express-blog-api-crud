@@ -2,7 +2,7 @@
 const express = require('express');
 
 // creiamo un istanza dell'oggetto rotte di express
-const router = express.Router;
+const router = express.Router();
 
 // import del controller della risorsa blog
 const postsController = require('./../controllers/postsControllers');
@@ -29,3 +29,4 @@ router.delete('/:id', postsController.destroy);
 
 // esporto l'istanza delle rotte
 module.exports = router;
+
