@@ -83,9 +83,36 @@ function store(req, res) {
     res.json(blogList);
 }
 
-// update
+// update  "aggiornamento totale"
 function update(req, res) {
-    res.send("siamo nella logica dell' update")
+    // recupero id dall'url e trasformarlo in un numero
+    const id = parseInt(req.params.id);
+
+    // cerchaimo il post corrente attrarverso l'id
+    const post = blogList.find(post => post.id === id);
+
+    // controllo
+    if (!post) {
+        res.status(404);
+
+        return res.json({
+            error: "Not Found",
+            messagge: "post non trovato"
+        })
+    }
+
+    // proprieta' da aggiornare del post
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags
+
+    // verifica lista
+    console.log(blogList);
+
+    // ritorno il post appena aggiornato
+    res.json(post);
+
 }
 
 // modify
