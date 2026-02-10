@@ -9,6 +9,9 @@ const postsRouter = require('./routers/posts');
 // attivazione cartelle public
 app.use(express.static('public'));
 
+// registro body-parser per application/json
+app.app(express.json());
+
 // rotta per la home app
 app.get('/', (req, res) => {
     res.send("rotta di home della nostra app di blog")
