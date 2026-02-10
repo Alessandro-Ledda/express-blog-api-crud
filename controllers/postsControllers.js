@@ -15,7 +15,7 @@ function index(req, res) {
     // se la richiesta contiene un filtro, allora filtriamo
     if (req.query.tags) {
         filteredList = blogList.filter(
-            blog => blog.tags.includes(req.query.tags)
+            post => post.tags.includes(req.query.tags)
         );
     }
 
@@ -38,10 +38,10 @@ function show(req, res) {
     const idNum = parseInt(req.params.id)
 
     // cerchiamo la pizza in base al suo id di ref
-    const blog = blogList.find(blog => blog.id === idNum);
+    const post = blogList.find(post => post.id === idNum);
 
     // condione di check se trovato item
-    if (!blog) {
+    if (!post) {
 
         // forziamo il messaggio d'errore a 404
         res.status(404);
@@ -55,7 +55,7 @@ function show(req, res) {
     }
 
     // restituiamo il tutto in formato json
-    res.json(blog);
+    res.json(post);
 }
 
 // store
@@ -80,10 +80,10 @@ function destroy(req, res) {
     const id = parseInt(req.params.id)
 
     // cerchaimo il blog da eliminare per id
-    const blog = blogList.find(blog => blog.id === id);
+    const post = blogList.find(post => post.id === id);
 
     // controllo per eventuali errori
-    if (!blog) {
+    if (!post) {
         res.status(404);
 
         return res.json({
@@ -94,7 +94,7 @@ function destroy(req, res) {
     }
 
     // rimuoviamo la pizza dal menu
-    blogList.splice(blogList.indexOf(blog), 1);
+    blogList.splice(blogList.indexOf(post), 1);
 
     // forzo status del successo della cancellazione (204)
     res.sendStatus(204)
