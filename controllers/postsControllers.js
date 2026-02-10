@@ -13,9 +13,9 @@ function index(req, res) {
     let filteredList = blogList;
 
     // se la richiesta contiene un filtro, allora filtriamo
-    if (req.query.dolci) {
+    if (req.query.tags) {
         filteredList = blogList.filter(
-            blog => blog.dolci.includes(req.query.dolci)
+            blog => blog.tags.includes(req.query.tags)
         );
     }
 
@@ -80,7 +80,7 @@ function destroy(req, res) {
     const id = parseInt(req.params.id)
 
     // cerchaimo il blog da eliminare per id
-    const blog = blogList.find(blog => blog === id);
+    const blog = blogList.find(blog => blog.id === id);
 
     // controllo per eventuali errori
     if (!blog) {
@@ -98,8 +98,6 @@ function destroy(req, res) {
 
     // forzo status del successo della cancellazione (204)
     res.sendStatus(204)
-
-    res.send("siamo nella logica del destroy")
 }
 
 // esportimo tutte le funzione per le rotte di ref
