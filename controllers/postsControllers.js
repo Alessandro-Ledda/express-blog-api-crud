@@ -115,9 +115,36 @@ function update(req, res) {
 
 }
 
-// modify
+// modify "modifiche parziali"
 function modify(req, res) {
-    res.send("siamo nella logica dell modify")
+
+    // trasformiamo l'id dall'url in un numero
+    const id = parseInt(req.params.id);
+
+    // cerchiamo il post attraverso il corrispettivo id
+    const post = blogList.find(post => post.id === id);
+
+    // controllo
+    if (!post) {
+        res.status(404);
+
+        return res.json({
+            error: "Not Found",
+            messagge: "post non trovato"
+        })
+    }
+
+    // aggiornamneto post preso in esame (is true allora e' uguale altrimenti e uguale a prima )
+    req.body.title ? post.title = req.body.title : post.title = post.title;
+    req.body.content ? post.content = req.body.content : post.content = post.content;
+    req.body.image ? post.image = req.body.image : post.image = post.image;
+    req.body.tags ? post.tags = req.body.tags : post.tags = post.tags
+
+    // verifica
+    console.log(blogList)
+
+    // restituiamo tutto in json
+    res.json(post);
 }
 
 // destroy
