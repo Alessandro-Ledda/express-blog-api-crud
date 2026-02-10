@@ -10,7 +10,7 @@ const postsRouter = require('./routers/posts');
 app.use(express.static('public'));
 
 // registro body-parser per application/json
-app.app(express.json());
+app.use(express.json());
 
 // rotta per la home app
 app.get('/', (req, res) => {

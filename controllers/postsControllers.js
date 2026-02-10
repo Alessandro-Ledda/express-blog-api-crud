@@ -60,7 +60,27 @@ function show(req, res) {
 
 // store
 function store(req, res) {
-    res.send("siamo nella logica dello store")
+    // soluzione per creazione id univoco(mansione db)
+    const newId = Date.now();
+
+    // costruiamo il nuovo oggetto post che verra aggiunto
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+
+    // aggiungiamo il post alla lista dei post
+    blogList.push(newPost);
+
+    // verifica 
+    console.log(blogList);
+
+    // restituiamo lo stato corretto per l'operazone(creazione di un nuovo post).
+    res.status(201);
+    res.json(blogList);
 }
 
 // update
