@@ -37,6 +37,9 @@ function show(req, res) {
     // recupero id dall'url del blog corrente e trasformarlo in un numero
     const idNum = parseInt(req.params.id)
 
+    // introduciamo un errore a caso per test middelware err 500
+    // throw new Error("Errore di test middleware");    
+
     // cerchiamo la pizza in base al suo id di ref
     const post = blogList.find(post => post.id === idNum);
 

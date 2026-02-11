@@ -6,6 +6,9 @@ const port = 3000
 //  import del middleware checkTime
 const checkTime = require('./middlewares/checkTime');
 
+// import del middelware di gestione errore interno 500
+const errorsHandler = require("./middlewares/errorsHandler");
+
 // importazione router dei blog
 const postsRouter = require('./routers/posts');
 
@@ -25,6 +28,9 @@ app.get('/', (req, res) => {
 
 // registrazione middleware su router specifico
 app.use("/posts", checkTime)
+
+// registriamo middelware di gestione err 500
+app.use(errorsHandler);
 
 // istanza delle rotte per risorsa blog
 app.use("/posts", postsRouter)
