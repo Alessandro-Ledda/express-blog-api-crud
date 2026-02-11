@@ -9,6 +9,9 @@ const checkTime = require('./middlewares/checkTime');
 // import del middelware di gestione errore interno 500
 const errorsHandler = require("./middlewares/errorsHandler");
 
+// import del middelware di gestione di rotta inesistente
+const notFound = require("./middlewares/notFound");
+
 // importazione router dei blog
 const postsRouter = require('./routers/posts');
 
@@ -31,6 +34,9 @@ app.use("/posts", checkTime)
 
 // registriamo middelware di gestione err 500
 app.use(errorsHandler);
+
+// registriamo middelware di gestione rotta inesistente
+app.use(notFound);
 
 // istanza delle rotte per risorsa blog
 app.use("/posts", postsRouter)
